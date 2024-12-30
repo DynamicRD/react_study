@@ -1,16 +1,14 @@
 import "./controller.css";
 import { useState } from "react";
 
-const Controller = ({ onClickButton }) => {
-  const [input, setInput] = useState({
-    firstNum: "",
-    secondNum: "",
-    symbol: "",
-  });
-
+const Controller = (input) => {
   function onChange(e) {
     console.log({ ...input, [e.target.name]: e.target.value });
-    setInput({ ...input, [e.target.name]: e.target.value });
+    input.setInput({ ...input, [e.target.name]: Number(e.target.value) });
+  }
+  function onChangeSymbol(e) {
+    console.log({ ...input, [e.target.name]: e.target.value });
+    input.setInput({ ...input, [e.target.name]: e.target.value });
   }
 
   return (
@@ -28,7 +26,7 @@ const Controller = ({ onClickButton }) => {
         <select
           //value={input.symbol}
           name="symbol"
-          onChange={onChange}
+          onChange={onChangeSymbol}
         >
           <option value=""></option>
           <option value="+">+</option>

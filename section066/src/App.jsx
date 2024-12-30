@@ -11,12 +11,7 @@ function App() {
     symbol: "",
   });
 
-  function onChange(e) {
-    console.log({ ...input, [e.target.name]: e.target.value });
-    setInput({ ...input, [e.target.name]: Number(e.target.value) });
-  }
-
-  const onClickButton = (value) => {
+  const onChangeValue = (value) => {
     setInput(input.count + value);
   };
 
@@ -27,7 +22,7 @@ function App() {
         <Viewer count={input.count} />
       </section>
       <section className="controller">
-        <Controller onClickButton={onClickButton} />
+        <Controller />
       </section>
     </div>
   );
