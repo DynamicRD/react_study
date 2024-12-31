@@ -5,12 +5,13 @@ import { useState } from "react";
 
 function App() {
   const [input, setInput] = useState({
+    count: "0",
     firstNum: "",
     secondNum: "",
     symbol: "",
-    count: "0", 
   });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   const onChangeValue = (value) => {
     setInput(input.count + value);
@@ -54,15 +55,25 @@ function App() {
   const onClickCalculate = () => {
     calculate();
 >>>>>>> 8e47fce8445ff7a0a14a13b15d2039973085717f
+=======
+  function onChange(e) {
+    console.log({ ...input, [e.target.name]: e.target.value });
+    setInput({ ...input, [e.target.name]: Number(e.target.value) });
+  }
+
+  const onClickButton = (value) => {
+    setInput(input.count + value);
+>>>>>>> parent of 8e47fce (간단한 계산기)
   };
 
   return (
     <div className="app">
-      <h1>Simple Calculator</h1>
+      <h1>Simple Counter</h1>
       <section className="viewer">
-        <Viewer count={input.count} /> 
+        <Viewer count={input.count} />
       </section>
       <section className="controller">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <Controller />
 =======
@@ -72,6 +83,9 @@ function App() {
           onClickCalculate={onClickCalculate}
         />
 >>>>>>> 8e47fce8445ff7a0a14a13b15d2039973085717f
+=======
+        <Controller onClickButton={onClickButton} />
+>>>>>>> parent of 8e47fce (간단한 계산기)
       </section>
     </div>
   );
