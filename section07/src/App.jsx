@@ -28,9 +28,9 @@ function App() {
   return (
     <div className="app">
       <h1>Simple Counter</h1>
-      <div>
+      <section>
         <input type="text" value={input} onChange={onChangeInput} />
-      </div>
+      </section>
       <section className="viewer">
         <Viewer count={count} />
         {count % 2 === 0 ? <Even /> : null}
