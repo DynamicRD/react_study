@@ -7,7 +7,7 @@ import { useState, useRef, useReducer } from "react";
 // 가상의 데이터(목업)
 const mockData = [
   {
-    id: 0,
+    id: 3,
     writer: "영구",
     isDone: false,
     content: "리액트 공부하기",
@@ -15,7 +15,7 @@ const mockData = [
     isUpdate: false,
   },
   {
-    id: 1,
+    id: 2,
     writer: "짱구",
     isDone: false,
     content: "스프링부트 공부하기",
@@ -23,7 +23,7 @@ const mockData = [
     isUpdate: false,
   },
   {
-    id: 2,
+    id: 1,
     writer: "영희",
     isDone: true,
     content: "유튜브 자바보며 쉬기",
@@ -72,7 +72,7 @@ function reducer(state, action) {
 
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData); // useReducer 사용법 수정
-  const idRef = useRef(3);
+  const idRef = useRef(4);
 
   // todos 추가할 레코드(객체) 처리하는 핸들러 함수
   const onInsert = (data, data2) => {

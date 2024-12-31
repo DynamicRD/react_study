@@ -23,7 +23,7 @@ const ListItem = ({
   const onUpdateItemBox = () => {
     onUpdateItem(id);
   };
-
+  console.log(`id = ${id}`);
   return (
     <>
       <div className="listItem">
