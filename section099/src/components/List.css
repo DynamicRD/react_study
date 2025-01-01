@@ -21,3 +21,18 @@
   flex-direction: column;
   gap: 20px;
 }
+
+
+.list .item2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.item2 button {
+  color: gray;
+  font-size: 14px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}

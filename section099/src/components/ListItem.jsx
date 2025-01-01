@@ -14,6 +14,8 @@ const ListItem = ({
   onUpdateItem,
   onUpdateReal,
 }) => {
+
+
   const onChangeCheckBox = () => {
     onUpdate(id);
   };
@@ -43,7 +45,7 @@ const ListItem = ({
         <ListItemUpdate onUpdateReal={onUpdateReal} id={id} />
       ) : (
         ""
-      )}
+      )}  
     </>
   );
 };
