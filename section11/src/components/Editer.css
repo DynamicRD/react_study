@@ -1,0 +1,22 @@
+.editer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.editer input{
+    flex:1;
+    padding :15px;
+    border: 1px solid rgb(233, 231, 231);
+    border-radius: 5px;
+}
+
+.editer button{
+    width: 80px;
+    background-color: rgb(71, 183, 187);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -2,7 +2,14 @@ import "./App.css";
 import Header from "./components/Header";
 import Editer from "./components/Editer";
 import List from "./components/List";
-import { useState, useRef, useReducer, useCallback } from "react";
+import {
+  useState,
+  useRef,
+  useReducer,
+  useCallback,
+  createContext,
+  useMemo,
+} from "react";
 import Exam from "./components/Exam";
 
 // 가상의 데이터(목업)
@@ -43,6 +50,10 @@ function reducer(state, action) {
   }
 }
 
+//createContext() =>Session session = request.getSession();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
+
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData); // useReducer 사용법 수정
   const idRef = useRef(3);
@@ -76,13 +87,21 @@ function App() {
       data: targetId,
     });
   }, []);
-  
+
+  //TodoDispatchContext.Provider 위한 useMemo() 만들어야한다
+  const memoizedDispatch = useMemo(() => {
+    return { onInsert, onUpdate, onDelete };
+  }, []);
   return (
     <div className="app">
       <Exam />
       <Header />
-      <Editer onInsert={onInsert} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={{ onInsert, onUpdate, onDelete }}>
+          <Editer />
+          <List />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }
