@@ -4,7 +4,8 @@ import Button from "../components/Button";
 import Viewer from "../components/Viewer";
 import { getStringedDate } from "../util/get-stringed-date";
 import { DiaryStateContext } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+
 const Diary = () => {
   const params = useParams();
   const nav = useNavigate();
@@ -19,7 +20,6 @@ const Diary = () => {
 
   //마운트될 때 해당되는 id를 찾아서 객체가져오기
   useEffect(() => {
-    289;
     const currentDiaryItem = data.find(
       (item) => String(item.id) === String(params.id)
     );
