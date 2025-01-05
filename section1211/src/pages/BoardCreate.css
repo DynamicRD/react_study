@@ -1,0 +1,76 @@
+.board-create {
+  width: 80%;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.board-create h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.board-create form {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-create table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.board-create table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  width: 50%; /* 각 셀의 너비를 절반으로 지정 */
+}
+
+.board-create table td input,
+.board-create table td textarea {
+  width: 100%; /* 너비를 셀에 맞춰서 100%로 설정 */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* 패딩이 포함된 너비로 설정 */
+}
+
+.board-create table td input:focus,
+.board-create table td textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.board-create table td textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+.board-create button {
+  background-color: #4a90e2;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.board-create button:hover {
+  background-color: #357ab7;
+}
+
+.board-create button:focus {
+  outline: none;
+  background-color: #357ab7;
+}
