@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import './BoardDetail.css'
+import "./BoardDetail.css";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -18,17 +18,14 @@ const BoardDetail = ({ todos, onUpdateReal }) => {
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
 
-
   useEffect(() => {
     // todos에서 id가 일치하는 게시물 찾기
     const currentPost = todos.find((todo) => todo.id === parseInt(id));
     if (currentPost) {
       setPost(currentPost);
-    // 본문 내용도 상태에 설정
+      // 본문 내용도 상태에 설정
     }
   }, [id, todos]);
-
-
 
   if (!post) return <div>Loading...</div>;
 

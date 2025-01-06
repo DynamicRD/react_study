@@ -4,46 +4,66 @@ import Button from "../components/Button";
 import Viewer from "../components/Viewer";
 import { getStringedDate } from "../util/get-stringed-date";
 import { DiaryStateContext } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+
+
 const Diary = () => {
   const params = useParams();
   const nav = useNavigate();
+
   //사용자 훅스를 만들어서 사용한다.
   //const curDiaryItem = useDiary(params.id);
+
   //if (!curDiaryItem) {
-  // return <div>데이터 로딩중...!</div>;
-  //}
-  //전체 데이터에서 해당되는 id 가져오기
+  //  return <div>데이터 로딩중...!</div>;
+//}
+
+//전체 데이터에서 해당되는 id 가져오기
   const data = useContext(DiaryStateContext);
   const [curDiaryItem, setCurDiaryItem] = useState();
-
+  
   //마운트될 때 해당되는 id를 찾아서 객체가져오기
   useEffect(() => {
-    289;
     const currentDiaryItem = data.find(
       (item) => String(item.id) === String(params.id)
     );
+
     if (!currentDiaryItem) {
       window.alert("존재하지 않는 일기입니다.");
       nav("/", { replace: true });
     }
+    console.log(`mount ${currentDiaryItem}`); 
     setCurDiaryItem(currentDiaryItem);
   }, [params.id, data]);
-  //================================
-  const { createdDate, emotionId, content } = curDiaryItem;
-  //날짜를 문자열로 가져오기
+
+ if (!curDiaryItem) {
+   return <div>데이터 로딩중...!</div>;
+ }
+  
+//================================
+
+console.log(`+++++++++++ ${curDiaryItem}`); 
+const { createdDate, emotionId, content } = curDiaryItem;
+//날짜를 문자열로 가져오기 
   const title = getStringedDate(new Date(createdDate));
+
   return (
     <div>
       <Header
         title={`${title} 기록`}
-        left={<Button onClick={() => nav(-1)} text={"< 뒤로 가기"} />}
+        left={
+          <Button onClick={() => nav(-1)} text={"< 뒤로 가기"} />
+        }
         right={
-          <Button onClick={() => nav(`/edit/${params.id}`)} text={"수정하기"} />
+          <Button
+            onClick={() => nav(`/edit/${params.id}`)}
+            text={"수정하기"}
+          />
         }
       />
       <Viewer emotionId={emotionId} content={content} />
     </div>
   );
 };
+
 export default Diary;

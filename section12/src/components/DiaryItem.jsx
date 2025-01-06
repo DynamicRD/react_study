@@ -1,49 +1,25 @@
-import { useParams, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Button from "../components/Button";
-import Viewer from "../components/Viewer";
-import { getStringedDate } from "../util/get-stringed-date";
-import { DiaryStateContext } from "../App";
-import { useContext, useEffect, useState } from "react";
+import './DiaryItem.css'
+import {getEmotionImage} from "../util/get-emotion-image"
+import Button from "./Button";
+import { useNavigate } from 'react-router-dom';
 
-const Diary = () => {
-  const params = useParams();
-  const nav = useNavigate();
-  //사용자 훅스를 만들어서 사용한다.
-  //const curDiaryItem = useDiary(params.id);
-  //if (!curDiaryItem) {
-  // return <div>데이터 로딩중...!</div>;
-  //}
-  //전체 데이터에서 해당되는 id 가져오기
-  const data = useContext(DiaryStateContext);
-  const [curDiaryItem, setCurDiaryItem] = useState();
+const DiaryItem = ({id, emotionId, createdDate, content})=>{
+    const nav = useNavigate(); 
+    return(
+        <div className="diaryItem">
+            <div onClick={()=>{nav(`/diary/${id}`)}}  className="img_section">
+                <img src={getEmotionImage(emotionId)}  />
+            </div>
+            <div onClick={()=>{nav(`/diary/${id}`)}} className="info_section">
+                <p>{new Date(createdDate).toLocaleDateString()}</p>
+                <p>{content}</p>
+            </div>
+            <div onClick={()=>{nav(`/edit/${id}`)}} className="button_section">
+                <Button text={"수정하기"} />
+            </div>
 
-  //마운트될 때 해당되는 id를 찾아서 객체가져오기
-  useEffect(() => {
-    const currentDiaryItem = data.find(
-      (item) => String(item.id) === String(params.id)
-    );
-    if (!currentDiaryItem) {
-      window.alert("존재하지 않는 일기입니다.");
-      nav("/", { replace: true });
-    }
-    setCurDiaryItem(currentDiaryItem);
-  }, [params.id, data]);
-  //================================
-  const { createdDate, emotionId, content } = curDiaryItem;
-  //날짜를 문자열로 가져오기
-  const title = getStringedDate(new Date(createdDate));
-  return (
-    <div>
-      <Header
-        title={`${title} 기록`}
-        left={<Button onClick={() => nav(-1)} text={"< 뒤로 가기"} />}
-        right={
-          <Button onClick={() => nav(`/edit/${params.id}`)} text={"수정하기"} />
-        }
-      />
-      <Viewer emotionId={emotionId} content={content} />
-    </div>
-  );
+        </div>
+    ); 
 };
-export default Diary;
+
+export default DiaryItem; 

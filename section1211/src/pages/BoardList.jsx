@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './BoardList.css';
+import "./BoardList.css";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
